@@ -1,7 +1,7 @@
 package com.chao.Controller.admin;
 
-import com.chao.Pojo.Type;
-import com.chao.Service.TypeService;
+import com.chao.Pojo.Tag;
+import com.chao.Service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,44 +15,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- * 分类控制器
+ * 标签控制器
  */
 @Controller
 @RequestMapping("/admin")
-public class TypeController {
+public class TagController {
 
     @Autowired
-    private TypeService typeService;
+    private TagService tagService;
 
     /**
-     * 分类列表
+     * 标签列表
      * @param pageable
      * @param model
      * @return
      */
-    @GetMapping("/types")
+    @GetMapping("/tags")
     public String list(@PageableDefault(size = 5,sort = {"id"},direction = Sort.Direction.DESC)
                                    Pageable pageable, Model model)
     {
-//        System.out.println("---get---");
-        model.addAttribute("page",typeService.ListType(pageable));
-        return "admin/types";
+    //   System.out.println("---get---");
+        model.addAttribute("page",tagService.ListTag(pageable));
+        return "admin/tags";
     }
 
     /**
      * 新增跳转
      * @return
      */
-    @GetMapping("/input/type")
+    @GetMapping("/input/tag")
     public String input()
     {
-        return "admin/types-input";
+        return "admin/tags-input";
     }
 
-    @GetMapping("/types/input")
+    @GetMapping("/tags/input")
     public String input(Model model) {
-        model.addAttribute("type", new Type());
-        return "admin/types-input";
+        model.addAttribute("tag", new Tag());
+        return "admin/tags-input";
     }
     /**
      * 修改页面跳转
@@ -60,13 +60,13 @@ public class TypeController {
      * @param model
      * @return
      */
-    @GetMapping("/types/{id}/input")
-    public String updateType(@PathVariable Long id, Model model)
+    @GetMapping("/tags/{id}/input")
+    public String updateTag(@PathVariable Long id, Model model)
     {
-        Type t = typeService.getType(id);
-        model.addAttribute("type",t);
+        Tag t = tagService.getTag(id);
+        model.addAttribute("tag",t);
         model.addAttribute("name",t.getName());
-        return "admin/types-input";
+        return "admin/tags-input";
     }
 
     /**
@@ -75,24 +75,24 @@ public class TypeController {
      * @param attribute
      * @return
      */
-    @RequestMapping("/types/{id}/delete")
-   public String deleteType(@PathVariable Long id,RedirectAttributes attribute)
+    @RequestMapping("/tags/{id}/delete")
+   public String deleteTag(@PathVariable Long id,RedirectAttributes attribute)
    {
-       typeService.deleteType(id);
+       tagService.deleteTag(id);
        attribute.addFlashAttribute("message","删除成功");
-       return "redirect:/admin/types";
+       return "redirect:/admin/tags";
    }
 
     /**
-     * 添加分类
-     * @param type
+     * 添加标签
+     * @param tag
      * @return
      */
-    @PostMapping("/types")
-    public String saveType(Type type,RedirectAttributes attribute)
+    @PostMapping("/tags")
+    public String saveTag(Tag tag,RedirectAttributes attribute)
     {
-       //  System.out.println("---post---");
-        Type t = typeService.saveType(type);
+       System.out.println("---post---");
+        Tag t = tagService.saveTag(tag);
 
         if (t==null)
         {
@@ -103,19 +103,19 @@ public class TypeController {
             attribute.addFlashAttribute("message","添加成功");
         }
 
-        return "redirect:/admin/types";
+        return "redirect:/admin/tags";
     }
 
     /**
-     * 保存修改的分类
-     * @param type
+     * 保存修改的标签
+     * @param tag
      * @return
      */
-    @PostMapping("/types/{id}")
-    public String saveUpdateType(Type type,RedirectAttributes attribute)
+    @PostMapping("/tags/{id}")
+    public String saveUpdateTag(Tag tag,RedirectAttributes attribute)
     {
         //  System.out.println("---post---");
-        Type t = typeService.saveType(type);
+        Tag t = tagService.saveTag(tag);
 
         if (t==null)
         {
@@ -126,6 +126,6 @@ public class TypeController {
             attribute.addFlashAttribute("message","修改成功");
         }
 
-        return "redirect:/admin/types";
+        return "redirect:/admin/tags";
     }
 }
