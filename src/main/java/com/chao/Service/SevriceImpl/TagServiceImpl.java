@@ -11,6 +11,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class TagServiceImpl implements TagService {
 
@@ -33,6 +36,25 @@ public class TagServiceImpl implements TagService {
     @Override
     public Page<Tag> ListTag(Pageable pageable) {
         return tagRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Tag> list() {
+        return tagRepository.findAll();
+    }
+
+    @Override
+    public List<Tag> getTags(String ids) {
+        List<Tag> TagList=new ArrayList<>();
+
+        //ibs 装换成数组，在进行一一查询 加入List
+        String[] id = ids.split(",");
+        for (String s : id) {
+            Tag tag = tagRepository.getOne(Long.valueOf(s));
+            TagList.add(tag);
+        }
+
+        return TagList;
     }
 
     @Transactional

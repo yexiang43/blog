@@ -5,6 +5,8 @@ import com.chao.Pojo.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 /**
  * 标签
  */
@@ -29,6 +31,9 @@ public interface TagService {
      */
     public  Page<Tag> ListTag(Pageable pageable);
 
+
+    List<Tag> list();
+
     /**
      * 修改
      * @param tag
@@ -41,4 +46,7 @@ public interface TagService {
      * @param id
      */
     public void deleteTag(Long id);
+
+
+    List<Tag> getTags(String ids);
 }

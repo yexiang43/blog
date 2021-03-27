@@ -19,6 +19,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -58,7 +59,7 @@ public class BlogServiceImpl implements BlogService {
 
                 if(blog.isRecommend())
                 {
-                    predicates.add(cb.equal(root.<String>get("recommend").get("id"),blog.isRecommend()));
+                    predicates.add(cb.equal(root.<Boolean>get("recommend"), blog.isRecommend()));
                 }
 
                 cq.where(predicates.toArray(new Predicate[predicates.size()]));
@@ -82,6 +83,15 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog saveBlog(Blog blog) {
+          if (blog.getId()==null)
+          {
+              blog.setCreateTime(new Date());
+              blog.setUpdateTime(new Date());
+              blog.setViews(0);
+          }else
+          {
+              blog.setUpdateTime(new Date());
+          }
         return blogRepository.save(blog);
     }
 
