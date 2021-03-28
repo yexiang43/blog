@@ -9,7 +9,7 @@
   <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
     <div class="ui container">
       <div class="ui inverted secondary stackable menu">
-        <h2 class="ui teal header item">yexiang</h2>
+        <h2 class="ui teal header item">Dexter</h2>
         <a href="#" class=" m-item item m-mobile-hide"><i class="mini home icon"></i>&nbsp;&nbsp;首页</a>
         <a href="#" class=" m-item item m-mobile-hide"><i class="mini idea icon"></i>&nbsp;&nbsp;分类</a>
         <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>&nbsp; &nbsp;标签</a>
@@ -43,8 +43,11 @@
             <div class="ui header">&nbsp;关于我</div>
           </div>
           <div class="ui attached segment">
-            <p class="m-text">成长虽然比别人慢了一些，但也很努力的想要开出一所小花来！</p>
-            <p class="m-text"></p>
+            <ul>
+            <li><p class="m-text">00后，计算机专业，一个普通的编程热爱者。</p></li>
+            <li><p class="m-text">本站关于计算机语言，技术经验，踩坑记录，但内容不只是这些。</p></li>
+            <li><p class="m-text">这是我挺喜欢的一句话：成长虽然比别人慢了一些，但也很努力的想要开出一所小花来！</p></li>
+            </ul>
           </div>
           <div class="ui attached segment">
             <div class="ui orange basic left pointing label">编程</div>
@@ -60,11 +63,42 @@
             <div class="ui teal basic left pointing label m-margin-tb-tiny">PHP</div>
             <div class="ui teal basic left pointing label m-margin-tb-tiny">...</div>
           </div>
-          <div class="ui bottom attached segment">
-            <a href="https://github.com/yexiang43" class="ui circular icon button" ><i class="github icon"></i></a>
-            <a href="#" class="ui qq circular icon button" data-content="1736722371" data-position="bottom center"><i class="qq icon"></i></a>
-          </div>
 
+          <div class="ui bottom attached segment">
+            <a class="icon" href="https://github.com/yexiang43" target="_blank">
+              <img src="./images/github.png"  class="ui github avatar image" data-content="github" data-position="bottom center" style="width: 30px;height: 30px;margin-right: 20px">
+            </a>
+            <a class="icon" href="https://gitee.com/code__chao" target="_blank">
+              <img src="./images/gitee.png"  class="ui gitee avatar image" data-content="码云" data-position="bottom center" style="width: 30px;height: 30px;margin-right: 20px">
+            </a>
+            <a class="icon" href="https://www.jianshu.com/u/0591ffea7244" target="_blank">
+              <img src="./images/jianshu.png"  class="ui jianshu avatar image" data-content="简书" data-position="bottom center" style="width: 30px;height: 30px;margin-right: 20px">
+            </a>
+            <a class="icon"  target="_blank">
+              <img src="./images/youxiang.png"  class="ui youxiang avatar image" data-content="1736722371@QQ.com" data-position="bottom center" style="width: 30px;height: 30px;margin-right: 20px">
+            </a>
+          </div>
+          <div class="ui attached segment container">
+            <p class="m-text">如果感觉本站还不错的话，期待您赏一杯咖啡。</p>
+            <!--赞赏-->
+            <div class="ui center aligned basic segment">
+              <button id="payButton" class="ui orange basic circular button">赞赏</button>
+            </div>
+            <div class="ui payQR flowing popup transition " >
+              <div class="ui orange basic label">
+                <div class="ui images" style="font-size: inherit !important; ">
+                  <div class="image">
+                    <img src="./images/zhifubao.png" alt="" class="ui rounded bordered image" style="width: 100px;float: left !important;">
+                    <div>支付宝</div>
+                  </div>
+                  <div class="image">
+                    <img src="./images/weixin.png" alt="" class="ui rounded bordered image" style="width: 100px;float: left !important;">
+                    <div>微信</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="ui wechat-qr flowing popup transition hidden">
             <img th:src="@{/images/wechat.jpg}" alt="" class="ui rounded image" style="width: 110px">
           </div>
@@ -76,24 +110,38 @@
 
   <br>
   <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   <!--底部footer-->
   <footer class="ui inverted vertical segment m-padded-tb-massive" th:replace="_fragment:: footer ">
   </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+  <script src="../static/lib/prism/prism.js"></script>
+  <script src="../static/lib/tocbot/tocbot.min.js"></script>
+  <script src="../static/lib/qrcode/qrcode.min.js"></script>
+  <script src="../static/lib/waypoints/jquery.waypoints.min.js"></script>
 
   <script>
     $('.menu.toggle').click(function () {
       $('.m-item').toggleClass('m-mobile-hide');
     });
 
-    $('.wechat').popup({
-      popup : $('.wechat-qr'),
+    $('#payButton').popup({
+      popup : $('.payQR.popup'),
+      on : 'click',
       position: 'bottom center'
     });
-    $('.qq').popup();
 
+    $('.github').popup();
+    $('.gitee').popup();
+    $('.youxiang').popup();
+    $('.jianshu').popup();
   </script>
 </body>
 </html>

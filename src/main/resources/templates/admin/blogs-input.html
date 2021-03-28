@@ -34,7 +34,7 @@
 
 
   <!--中间内容-->
-  <div  class="m-container m-padded-tb-big">
+  <div  class="m-container m-padded-tb-big" style="width: 1000px">
     <div class="ui attached pointing menu">
       <div class="ui container">
         <div class="right menu">
@@ -104,7 +104,10 @@
             <label class="ui teal basic label">首图</label>
             <input type="text" name="firstPicture" th:value="*{firstPicture}" placeholder="首图引用地址">
           </div>
+        </div>
 
+        <div class="required field">
+          <textarea name="description" th:text="*{description}" placeholder="博客描述..." maxlength="200"></textarea>
         </div>
 
         <div class="inline fields">
@@ -175,12 +178,12 @@
           </div>
         </div>
         <div class="seven wide column">
-          <h4 class="ui inverted header m-text-thin m-text-spaced ">yexiang</h4>
+          <h4 class="ui inverted header m-text-thin m-text-spaced ">Dexter</h4>
           <p class="m-text-thin m-text-spaced m-opacity-mini">这是我的个人博客，会分享我的学习笔记，踩坑记录，生活相关的内容。感谢您的访问。</p>
         </div>
       </div>
       <div class="ui inverted section divider"></div>
-      <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2021  yexiang</p>
+      <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2021  Dexter</p>
     </div>
 
   </footer>
@@ -205,9 +208,19 @@
         emoji : true,
         imageUpload: true,
         imageFormats: ["jpg","jpeg","gif","png","bmp","webp"],
-        imageUploadURL: "/file/upload"
+        imageUploadURL: "/file/upload",
+        onload: function () {
+          //console.log('onload', this);
+          //this.fullscreen();
+          //this.unwatch();
+          //this.watch().fullscreen();
+          this.width("100%");
+          this.height(480);
+          this.resize("100%", 640);
+        }
       });
     });
+
     $('.menu.toggle').click(function () {
       $('.m-item').toggleClass('m-mobile-hide');
     });
@@ -256,6 +269,13 @@
           rules: [{
             type : 'empty',
             prompt: '标题：请输入博客分类'
+          }]
+        },
+        description : {
+          identifier: 'description',
+          rules: [{
+            type : 'empty',
+            prompt: '标题：请输入博客描述'
           }]
         }
       }

@@ -54,6 +54,8 @@ public class Blog {
     @OneToMany(mappedBy = "blog")
     private List<Comment> comments = new ArrayList<>();
 
+    private String description;
+
     public void init() {
         this.tagIds = tagsToIds(this.getTags());
     }

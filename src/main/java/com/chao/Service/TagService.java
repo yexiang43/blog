@@ -2,6 +2,7 @@ package com.chao.Service;
 
 
 import com.chao.Pojo.Tag;
+import com.chao.Pojo.Type;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -33,6 +34,13 @@ public interface TagService {
 
 
     List<Tag> list();
+
+    /**
+     * 查询前size个标签
+     * @param size
+     * @return
+     */
+    List<Tag> listTag(Integer size);
 
     /**
      * 修改

@@ -5,6 +5,7 @@ import com.chao.Pojo.Type;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.nio.file.Path;
 import java.util.List;
 
 public interface TypeService {
@@ -28,6 +29,12 @@ public interface TypeService {
      */
     public  Page<Type> ListType(Pageable pageable);
 
+    /**
+     * 查询前size个分类
+     * @param size
+     * @return
+     */
+    List<Type> listType(Integer size);
 
     List<Type> list();
 
