@@ -13,6 +13,32 @@
 </head>
 <body>
 
+<!--导航-->
+<nav th:fragment="menu(n)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item"><a th:href="@{/}" style="color: #00B5AD">Dexter</a></h2>
+            <a th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="mini home icon"></i>&nbsp;首页</a>
+            <a th:href="@{/types/-1}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="mini idea icon"></i>&nbsp;分类</a>
+            <a th:href="@{/tags/-1}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="mini tags icon"></i>&nbsp;标签</a>
+            <a th:href="@{/archives}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="mini clone icon"></i>&nbsp;归档</a>
+            <a th:href="@{/about}" class="m-item item m-mobile-hide" th:classappend="${n==5} ? 'active'"><i class="mini info icon"></i>&nbsp;关于我</a>
+            <div class="right m-item item m-mobile-hide">
+                <form th:action="@{/search}" method="post" name="search" target="_blank">
+                    <div class="ui icon inverted transparent input m-margin-tb-tiny">
+                        <input type="text" name="query" placeholder="Search...." th:value="${query}">
+                        <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+
 <!--底部footer-->
 <footer class="ui inverted vertical segment m-padded-tb-massive" th:fragment="footer">
     <div class="ui center aligned container">
@@ -24,14 +50,14 @@
                     </div>
                 </div>
             </div>
-            <div class="three wide column">
-                <h4 class="ui inverted header m-text-thin m-text-spaced " >最新博客</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item m-text-thin">用户故事（User Story）</a>
-                    <a href="#" class="item m-text-thin">用户故事（User Story）</a>
-                    <a href="#" class="item m-text-thin">用户故事（User Story）</a>
-                </div>
-            </div>
+<!--            <div class="three wide column">-->
+<!--                <h4 class="ui inverted header m-text-thin m-text-spaced " >最新博客</h4>-->
+<!--                <div class="ui inverted link list">-->
+<!--                    <a href="#" class="item m-text-thin">用户故事（User Story）</a>-->
+<!--                    <a href="#" class="item m-text-thin">用户故事（User Story）</a>-->
+<!--                    <a href="#" class="item m-text-thin">用户故事（User Story）</a>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="three wide column">
                 <h4 class="ui inverted header m-text-thin m-text-spaced ">联系我</h4>
                 <div class="ui inverted link list">
@@ -46,6 +72,26 @@
         </div>
         <div class="ui inverted section divider"></div>
         <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2021  Dexter</p>
+        <span id="runtime_span" style="color: #00B5AD;"></span>
+        <script type="text/javascript">
+            function show_runtime() {
+                //设置一个定时器，每隔1秒执行一次show_runtime()方法
+                window.setTimeout("show_runtime()", 1000);
+                X = new Date("3/29/2021 0:00:00"); //建站时间
+                Y = new Date();
+                T = (Y.getTime() - X.getTime());
+                M = 24 * 60 * 60 * 1000;
+                a = T / M;
+                A = Math.floor(a);
+                b = (a - A) * 24;
+                B = Math.floor(b);
+                c = (b - B) * 60;
+                C = Math.floor((b - B) * 60);
+                D = Math.floor((c - C) * 60);
+                runtime_span.innerHTML = "本站已经运行了："+A + "天" + B + "小时" + C + "分" + D + "秒"
+            }
+            show_runtime();  //初始先执行一次
+        </script>
     </div>
 
 </footer>
