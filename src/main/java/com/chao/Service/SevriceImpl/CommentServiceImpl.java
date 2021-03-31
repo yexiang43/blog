@@ -5,6 +5,8 @@ import com.chao.Pojo.Comment;
 import com.chao.Service.CommentService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +49,17 @@ public class CommentServiceImpl implements CommentService {
         }
        comment.setCreateTime(new Date());
         return commentRepository.save(comment);
+    }
+
+
+    @Override
+    public void deleteComment(Long id) {
+         commentRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Comment> ListComment(Pageable pageable) {
+        return commentRepository.findAll(pageable);
     }
 
 

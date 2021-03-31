@@ -13,27 +13,29 @@ import java.util.List;
  * Created by limi on 2017/10/14.
  */
 @Entity
-@Table(name = "t_user")
+@Table(name = "t_comment")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Message {
 
     @Id
     @GeneratedValue
     private Long id;
     private String nickname;
-    private String username;
-    private String password;
     private String email;
+    private String content;
     private String avatar;
-    private Integer type;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updateTime;
 
-    @OneToMany(mappedBy = "user")
-    private List<Blog> blogs = new ArrayList<>();
+    @OneToMany(mappedBy = "parentComment")
+    private List<Message> replyComments = new ArrayList<>();
+
+    @ManyToOne
+    private Message parentComment;
+
+    private boolean adminComment;
+
 
 }

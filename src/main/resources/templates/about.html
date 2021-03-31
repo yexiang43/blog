@@ -6,7 +6,7 @@
 <body>
 
   <!--导航-->
-  <nav th:replace="_fragment :: menu(5)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
+  <nav th:replace="_fragment :: menu(7)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
 
   </nav>
 
@@ -109,6 +109,10 @@
   <script src="../static/lib/tocbot/tocbot.min.js"></script>
   <script src="../static/lib/qrcode/qrcode.min.js"></script>
   <script src="../static/lib/waypoints/jquery.waypoints.min.js"></script>
+
+  <script>
+    $('#m-index').load(/*[[@{/footer/index}]]*/"/footer/index");
+  </script>
 
   <script>
     $('.menu.toggle').click(function () {

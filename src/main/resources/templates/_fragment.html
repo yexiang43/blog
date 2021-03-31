@@ -20,9 +20,11 @@
             <h2 class="ui teal header item"><a th:href="@{/}" style="color: #00B5AD">Dexter</a></h2>
             <a th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="mini home icon"></i>&nbsp;首页</a>
             <a th:href="@{/types/-1}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="mini idea icon"></i>&nbsp;分类</a>
-            <a th:href="@{/tags/-1}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="mini tags icon"></i>&nbsp;标签</a>
-            <a th:href="@{/archives}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="mini clone icon"></i>&nbsp;归档</a>
-            <a th:href="@{/about}" class="m-item item m-mobile-hide" th:classappend="${n==5} ? 'active'"><i class="mini info icon"></i>&nbsp;关于我</a>
+            <a th:href="@{/tags/-1}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="mini tags icon"></i>&nbsp;&nbsp;标签</a>
+            <a th:href="@{/archives}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="mini clone icon"></i>&nbsp;&nbsp;归档</a>
+            <a th:href="@{/messages}" class="m-item item m-mobile-hide" th:classappend="${n==5} ? 'active'"><i class="mini comment outline icon"></i>&nbsp;留言板</a>
+            <a th:href="@{/friend}" class="m-item item m-mobile-hide" th:classappend="${n==6} ? 'active'"><i class="mini hand paper outline icon"></i>&nbsp;朋友圈</a>
+            <a th:href="@{/about}" class="m-item item m-mobile-hide" th:classappend="${n==7} ? 'active'"><i class="mini info icon"></i>&nbsp;关于我</a>
             <div class="right m-item item m-mobile-hide">
                 <form th:action="@{/search}" method="post" name="search" target="_blank">
                     <div class="ui icon inverted transparent input m-margin-tb-tiny">
@@ -50,14 +52,16 @@
                     </div>
                 </div>
             </div>
-<!--            <div class="three wide column">-->
-<!--                <h4 class="ui inverted header m-text-thin m-text-spaced " >最新博客</h4>-->
-<!--                <div class="ui inverted link list">-->
-<!--                    <a href="#" class="item m-text-thin">用户故事（User Story）</a>-->
-<!--                    <a href="#" class="item m-text-thin">用户故事（User Story）</a>-->
-<!--                    <a href="#" class="item m-text-thin">用户故事（User Story）</a>-->
-<!--                </div>-->
-<!--            </div>-->
+           <div id="m-index" th:fragment="index" style="padding-right: 20px;padding-top: 5px">
+               <div class="three wide column" >
+                   <h4 class="ui inverted header m-text-thin m-text-spaced " >破站信息</h4>
+                   <div class="ui inverted link list"  th:each="in : ${index}" >
+                       <p>本站文章数：<span  th:text="${blog}"></span>篇</p>
+                       <p>本站访问数：<span th:text="${in.indexViews}">300</span>次</p>
+                       <!--                    <p>本站留言数：<span>200</span>条</p>-->
+                   </div>
+               </div>
+           </div>
             <div class="three wide column">
                 <h4 class="ui inverted header m-text-thin m-text-spaced ">联系我</h4>
                 <div class="ui inverted link list">

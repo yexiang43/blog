@@ -265,7 +265,9 @@
 <script src="../static/lib/waypoints/jquery.waypoints.min.js" th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
 
 
-
+  <script>
+    $('#m-index').load(/*[[@{/footer/index}]]*/"/footer/index");
+  </script>
 
   <script th:inline="javascript">
 

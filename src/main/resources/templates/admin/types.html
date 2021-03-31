@@ -10,30 +10,8 @@
 <body>
 
   <!--导航-->
-  <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
-    <div class="ui container">
-      <div class="ui inverted secondary stackable menu">
-        <h2 class="ui teal header item">管理后台</h2>
-        <a th:href="@{/admin/blogs}" class=" m-item item m-mobile-hide"><i class="mini home icon"></i>博客</a>
-        <a th:href="@{/admin/types}" class="active m-item item m-mobile-hide"><i class="mini idea icon"></i>分类</a>
-        <a th:href="@{/admin/tags}" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>标签</a>
-        <div class="right m-item m-mobile-hide menu">
-          <div class="ui dropdown  item">
-            <div class="text">
-              <img class="ui avatar image" th:src="@{${session.user.avatar}}" >
-              <span th:text="${session.user.nickname}"></span>
-            </div>
-            <i class="dropdown icon"></i>
-            <div class="menu">
-              <a th:href="@{/admin/logout}" class="item">注销</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
-      <i class="sidebar icon"></i>
-    </a>
+  <nav th:replace="admin/_fragments :: menu(2)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
+
   </nav>
 
 

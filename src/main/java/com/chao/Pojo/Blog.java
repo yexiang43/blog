@@ -44,6 +44,8 @@ public class Blog {
     @ManyToOne
     private Type type;
 
+
+
     @ManyToMany(cascade = {CascadeType.PERSIST})
     private List<Tag> tags = new ArrayList<>();
 
@@ -55,6 +57,7 @@ public class Blog {
     private List<Comment> comments = new ArrayList<>();
 
     private String description;
+
 
     public void init() {
         this.tagIds = tagsToIds(this.getTags());
