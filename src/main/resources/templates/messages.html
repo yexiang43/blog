@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="_fragment:: head(~{:: title})">
-  <title>博客详情</title>
+  <title>Dexter的留言</title>
 </head>
 <body>
 
@@ -10,9 +10,30 @@
 
   </nav>
 
-      <div  class="ui bottom attached segment" th:if="${blog.commentabled}">
+
+
+  <!--中间内容-->
+  <div id="waypoint" class="m-container-small m-padded-tb-big animated fadeIn">
+    <div class="ui container">
+      <!--header-->
+      <div class="ui top attached segment">
+        <div class="ui middle aligned two column grid">
+          <div class="twelve column ">
+            <h2 class="ui teal header">&nbsp;留言板</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="ui attached  segment m-padded-tb-large">
+        <ul style="font-size: 18px">
+          <h3 class="ui purple header">有什么想对我说的，或者给本站一些建议，都可以在这里留下你想说的话。</h3>
+        </ul>
+      </div>
+    </div>
+    <div class="ui container" style="padding-top: 20px">
+      <div  class="ui bottom attached segment">
         <div id="comment-form" class="ui form">
-          <input type="hidden" name="blog.id" th:value="${blog.id}">
+          <input type="hidden" name="blog.id" th:value="80">
           <input type="hidden" name="parentComment.id" value="-1">
           <div class="field">
             <textarea name="content" placeholder="请输入评论信息..."></textarea>
@@ -34,13 +55,15 @@
               <button id="commentpost-btn" type="button" class="ui teal button m-mobile-wide"><i class="edit icon"></i>发布</button>
             </div>
           </div>
+
         </div>
+
 
         <!--留言区域列表-->
         <div id="comment-container"  class="ui teal segment">
           <div th:fragment="commentList">
             <div class="ui threaded comments" style="max-width: 100%;">
-              <h3 class="ui dividing header">评论</h3>
+              <h3 class="ui dividing header">留言板</h3>
               <div class="comment" th:each="comment : ${comments}">
                 <a class="avatar">
                   <img src="https://unsplash.it/100/100?image=1005" th:src="@{${comment.avatar}}">
@@ -86,13 +109,14 @@
               </div>
 
             </div>
+
           </div>
         </div>
+
+
       </div>
-
-
-
-
+    </div>
+  </div>
 
   <div class="ui toc-container flowing popup transition hidden" style="width: 250px!important;">
     <ol class="js-toc">
@@ -133,6 +157,16 @@
     });
 
 
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.js-toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: '.js-toc-content',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h1, h2, h3',
+    });
+
+    
     $('#toTop-button').click(function () {
       $(window).scrollTo(0,500);
     });
@@ -178,7 +212,7 @@
     })
 
     $(function () {
-      $("#comment-container").load(/*[[@{/comments/{id}(id=${blog.id})}]]*/"comments/6");
+      $("#comment-container").load(/*[[@{/comments/80}]]*/"comments/80");
     });
 
     function postData() {

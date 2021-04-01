@@ -23,7 +23,7 @@ public class FriendController {
     private FriendService friendService;
 
     @RequestMapping("/friend")
-    public String friend(@PageableDefault(size = 10000, sort = {"id"}, direction = Sort.Direction.DESC)
+    public String friend(@PageableDefault(size = 5, sort = {"id"}, direction = Sort.Direction.DESC)
                                      Pageable pageable, Model model)
     {
         model.addAttribute("friends",friendService.ListFriend(pageable));

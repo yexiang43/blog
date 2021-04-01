@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface CommentService {
 
-    List<Comment> findCommentByBlogId(Long blogId);
+    List<Comment> findCommentByBlogId(Pageable pageable,Long blogId);
 
     Comment saveComment(Comment comment);
 

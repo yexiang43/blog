@@ -6,6 +6,7 @@ import com.chao.Service.CommentService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -28,9 +29,9 @@ public class CommentServiceImpl implements CommentService {
     private CommentRepository commentRepository;
 
     @Override
-    public List<Comment> findCommentByBlogId(Long blogId) {
-        Sort sort=Sort.by("createTime");
-        List<Comment> comments = commentRepository.findByBlogIdAndParentCommentNull(blogId,sort);
+    public List<Comment> findCommentByBlogId(Pageable pageable,Long blogId) {
+        List<Comment> comments = commentRepository.findByBlogIdAndParentCommentNull(pageable,blogId);
+
         return eachComment(comments);
     }
 

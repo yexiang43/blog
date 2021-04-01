@@ -6,6 +6,9 @@ import com.chao.Service.BlogService;
 import com.chao.Service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,9 +34,10 @@ public class CommentController {
     private String avatar;
 
     @GetMapping("/comments/{blogId}")
-    public String comment(@PathVariable Long blogId, Model model)
+    public String comment(@PageableDefault(size = 5,sort = {"id"},direction = Sort.Direction.DESC)
+                                      Pageable pageable, @PathVariable Long blogId, Model model)
     {
-        model.addAttribute("comments",commentService.findCommentByBlogId(blogId));
+        model.addAttribute("comments",commentService.findCommentByBlogId(pageable,blogId));
         return "blog :: commentList";
     }
 

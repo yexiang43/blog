@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="_fragment:: head(~{:: title})">
-  <title>首页</title>
+  <title>Dexter的首页</title>
 </head>
 <body>
 
@@ -12,8 +12,6 @@
 
   <!--中间内容-->
   <div  class="m-container m-padded-tb-big">
-
-
 
     <div class="ui container">
 
@@ -39,7 +37,7 @@
 
             <div class="ui green segment">
             <div class="ui padded vertical segment m-padded-tb-large">
-              <div class="ui middle aligned mobile reversed stackable grid" >
+              <div class="ui middle aligned mobile reversed stackable grid">
                 <div class="eleven wide column" >
                   <h1 class="ui header"><a th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black" th:text="${blog.title}">你真的理解什么是财富自由吗？</a></h1>
                   <p class="m-text" th:text="|${blog.description}......|" style="font-size: 18px">正确做好任何一件事情的前提是清晰、正确的理解目标。而事实是，我们很多人很多时候根本没有对目标正确的定义，甚至根本从来就没有想过，只是大家都那么做而已…...</p>

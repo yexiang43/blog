@@ -13,7 +13,7 @@ import java.util.List;
  * Created by limi on 2017/10/14.
  */
 @Entity
-@Table(name = "t_comment")
+@Table(name = "t_message")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,13 +29,13 @@ public class Message {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
-    @OneToMany(mappedBy = "parentComment")
-    private List<Message> replyComments = new ArrayList<>();
+    @OneToMany(mappedBy = "parentMessage")
+    private List<Message> replyMessages = new ArrayList<>();
 
     @ManyToOne
-    private Message parentComment;
+    private Message parentMessage;
 
-    private boolean adminComment;
+    private boolean adminMessage;
 
 
 }

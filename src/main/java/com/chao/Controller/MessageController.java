@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MessageController {
 
-    @RequestMapping("/messages")
+    @RequestMapping("/message")
     public String message()
     {
         return "messages";
     }
+
 }

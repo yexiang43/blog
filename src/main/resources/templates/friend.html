@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="_fragment:: head(~{:: title})">
-  <title>&nbsp;分类</title>
+  <title>Dexter的朋友圈</title>
 </head>
 <body>
 
   <!--导航-->
   <nav th:replace="_fragment :: menu(6)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
-
   </nav>
 
   <!--中间内容-->
@@ -20,7 +19,6 @@
             <h2 class="ui teal header">&nbsp;朋友圈</h2>
           </div>
         </div>
-
       </div>
 
       <div class="ui attached segment m-padded-tb-large">
@@ -28,7 +26,6 @@
             <h2>加入朋友圈须知</h2>
             <li>网站无低俗色情的内容，没有政治敏感话题。</li>
             <li>网站需长期维护，一个月至少更新一次博客。</li>
-            <li>建站时间需大于3个月，博客需大于15篇，近一个月有内容更新。</li>
             <li>想加入朋友圈的朋友，需先把本站加入您的友情链接，之后可以通过email或留言板联系我。</li>
             <h2 >申请格式</h2>
             <li>博客标题 ：Dexter</li>
@@ -65,13 +62,13 @@
       </div>
 
       <!--footer-->
-      <div class="ui bottom attached segment">
+      <div class="ui bottom attached segment" th:if="${friends.totalPages}>1">
         <div class="ui middle aligned two column grid">
           <div class="column">
-            <a  class="ui mini teal basic button">上一页</a>
+            <a th:href="@{/friend/(page=${friends.number}-1)}" th:unless="${friends.first}"  class="ui mini teal basic button">上一页</a>
           </div>
           <div class="right aligned column">
-            <a    class="ui mini teal basic button">下一页</a>
+            <a th:href="@{/friend/(page=${friends.number}+1)}"  th:unless="${friends.last}" class="ui mini teal basic button">下一页</a>
           </div>
         </div>
       </div>
